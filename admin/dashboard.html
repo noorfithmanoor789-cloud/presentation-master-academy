@@ -45,13 +45,29 @@
         .stat-card.pass .number { color: #28a745; }
         .stat-card.fail .number { color: #dc3545; }
         .stat-card.total .number { color: #1a2a6c; }
+        
+        /* Logo Style */
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 3px solid #4a9eff;
+            background: white;
+        }
+        .admin-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
     </style>
 </head>
 <body>
     <div class="app-wrapper">
-        <!-- Header -->
+        <!-- Header with Logo -->
         <header class="app-header admin-header">
-            <div class="logo">📚</div>
+            <!-- ✅ FIXED: Logo Path -->
+            <img src="../assets/logo.jpeg" alt="Logo" class="logo-img" />
             <div>
                 <h1 style="margin:0; font-size:1.5rem;">Presentation Master Academy</h1>
                 <p style="margin:0; font-size:0.8rem; opacity:0.8;">Admin Dashboard</p>
