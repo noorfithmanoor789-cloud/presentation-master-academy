@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Admin Dashboard - Presentation Master Academy</title>
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#1a2a6c" />
+    <link rel="stylesheet" href="../assets/styles.css" />
+    <style>
+        .test-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+        .test-badge.test1 { background: #d4edda; color: #155724; }
+        .test-badge.test2 { background: #cce5ff; color: #004085; }
+        .test-badge.unknown { background: #f8d7da; color: #721c24; }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .stat-card {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 10px;
+            border: 1px solid #e8edf5;
+            text-align: center;
+        }
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #1a2a6c;
+        }
+        .stat-card .label {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+        .stat-card.pass .number { color: #28a745; }
+        .stat-card.fail .number { color: #dc3545; }
+        .stat-card.total .number { color: #1a2a6c; }
+    </style>
+</head>
+<body>
+    <div class="app-wrapper">
+        <!-- Header -->
+        <header class="app-header admin-header">
+            <div class="logo">📚</div>
+            <div>
+                <h1 style="margin:0; font-size:1.5rem;">Presentation Master Academy</h1>
+                <p style="margin:0; font-size:0.8rem; opacity:0.8;">Admin Dashboard</p>
+            </div>
+            <button id="adminLogoutBtn" class="btn btn-secondary" style="margin-left:auto;">🚪 Logout</button>
+        </header>
+
+        <main class="admin-container">
+            <!-- ====== TEST MANAGEMENT ====== -->
+            <div class="card" style="margin-bottom:20px;">
+                <h3>📋 Test Management</h3>
+                <div style="display:flex; gap:15px; flex-wrap:wrap; align-items:center; padding:15px 0;">
+                    <div style="flex:1; min-width:200px;">
+                        <label style="font-weight:600; display:block; margin-bottom:5px;">Select Active Test:</label>
+                        <select id="activeTestSelect" style="width:100%; padding:10px; border:2px solid #dce3ef; border-radius:10px; font-size:1rem;">
+                            <!-- Options loaded dynamically -->
+                        </select>
+                    </div>
+                    <button id="updateTestBtn" class="btn btn-primary">🔄 Switch Test</button>
+                    <span id="testStatus" style="padding:8px 15px; border-radius:20px; background:#d4edda; color:#155724; font-weight:600;">
+                        ✅ Active
+                    </span>
+                </div>
+                <div style="background:#f8f9fa; padding:15px; border-radius:10px; margin-top:10px;">
+                    <p style="margin:0; font-size:0.9rem; color:#6c757d;">
+                        📌 <strong>Note:</strong> Switching test will change what students see. All results are preserved.
+                    </p>
+                </div>
+            </div>
+
+            <!-- ====== STATISTICS ====== -->
+            <div class="stats-grid" id="statsGrid">
+                <div class="stat-card total">
+                    <div class="number" id="totalStudents">0</div>
+                    <div class="label">Total Students</div>
+                </div>
+                <div class="stat-card total">
+                    <div class="number" id="totalResults">0</div>
+                    <div class="label">Total Results</div>
+                </div>
+                <div class="stat-card pass">
+                    <div class="number" id="passCount">0</div>
+                    <div class="label">✅ Pass</div>
+                </div>
+                <div class="stat-card fail">
+                    <div class="number" id="failCount">0</div>
+                    <div class="label">❌ Fail</div>
+                </div>
+            </div>
+
+            <!-- ====== SEARCH & FILTER ====== -->
+            <div class="admin-controls">
+                <input type="text" id="searchInput" placeholder="🔍 Search student by name or username..." />
+                <select id="testFilterSelect">
+                    <option value="all">📊 All Tests</option>
+                    <option value="test1">🧬 Biology Chapter 1 - Viruses</option>
+                    <option value="test2">🔬 Biology Chapter 2 - Respiration</option>
+                </select>
+                <select id="sortSelect">
+                    <option value="latest">Latest Submission</option>
+                    <option value="highest">Highest Score</option>
+                    <option value="lowest">Lowest Score</option>
+                </select>
+                <button id="refreshBtn" class="btn btn-primary">🔄 Refresh</button>
+            </div>
+
+            <!-- ====== RESULT COUNT ====== -->
+            <div id="resultCount" style="margin:10px 0; padding:10px; border-radius:8px; font-weight:bold; background:#d4edda; color:#155724;">
+                Loading results...
+            </div>
+
+            <!-- ====== RESULTS TABLE ====== -->
+            <div class="card table-card">
+                <div id="resultsTableContainer" style="overflow-x:auto;">
+                    <table id="resultsTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Student Name</th>
+                                <th>Username</th>
+                                <th>Test</th>
+                                <th>Score</th>
+                                <th>Percentage</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultsBody">
+                            <tr><td colspan="9" style="text-align:center; padding:30px;">No results found</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- ====== LEGEND ====== -->
+            <div style="margin-top:20px; padding:15px; background:#f8f9fa; border-radius:10px; border:1px solid #dee2e6;">
+                <p style="margin:0; font-size:0.9rem; color:#6c757d;">
+                    <strong>Test Legend:</strong>
+                    <span class="test-badge test1">🧬 Biology Ch.1 - Viruses</span>
+                    <span class="test-badge test2">🔬 Biology Ch.2 - Respiration</span>
+                    <span class="test-badge unknown">❓ Unknown</span>
+                </p>
+            </div>
+        </main>
+    </div>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "firebase/app": "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js",
+                "firebase/firestore": "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"
+            }
+        }
+    </script>
+    <script type="module">
+        import { db } from '../assets/firebase.js';
+        import { collection, getDocs, query, orderBy } from 'firebase/firestore';
+        import { ALL_TESTS, getActiveTestId, setActiveTestId, EXAM_STUDENTS } from '../assets/data.js';
+
+        // ============================================================
+        // DOM REFERENCES
+        // ============================================================
+        const resultsBody = document.getElementById('resultsBody');
+        const searchInput = document.getElementById('searchInput');
+        const testFilterSelect = document.getElementById('testFilterSelect');
+        const sortSelect = document.getElementById('sortSelect');
+        const refreshBtn = document.getElementById('refreshBtn');
+        const adminLogoutBtn = document.getElementById('adminLogoutBtn');
+        const activeTestSelect = document.getElementById('activeTestSelect');
+        const updateTestBtn = document.getElementById('updateTestBtn');
+        const testStatus = document.getElementById('testStatus');
+        const resultCount = document.getElementById('resultCount');
+
+        let allResults = [];
+        let filteredResults = [];
+
+        // ============================================================
+        // LOAD TEST MANAGEMENT
+        // ============================================================
+        function loadTestManagement() {
+            const currentActive = getActiveTestId();
+            activeTestSelect.innerHTML = '';
+            
+            Object.keys(ALL_TESTS).forEach(key => {
+                const test = ALL_TESTS[key];
+                const option = document.createElement('option');
+                option.value = key;
+                const activeStatus = key === currentActive ? ' ✅ (Active)' : '';
+                option.textContent = `${test.name} (${test.totalQuestions} Qs, ${test.timeLimit} min)${activeStatus}`;
+                if (key === currentActive) {
+                    option.selected = true;
+                }
+                activeTestSelect.appendChild(option);
+            });
+
+            const test = ALL_TESTS[currentActive];
+            testStatus.textContent = `✅ ${test.name} Active`;
+            testStatus.style.background = '#d4edda';
+            testStatus.style.color = '#155724';
+        }
+
+        // ============================================================
+        // SWITCH TEST
+        // ============================================================
+        updateTestBtn.addEventListener('click', () => {
+            const testId = activeTestSelect.value;
+            const testName = activeTestSelect.options[activeTestSelect.selectedIndex].text;
+            
+            if (confirm(`Are you sure you want to switch to "${testName}"?`)) {
+                const success = setActiveTestId(testId);
+                if (success) {
+                    alert(`✅ Test switched to "${testName}" successfully!`);
+                    window.location.reload();
+                } else {
+                    alert('❌ Error switching test. Please try again.');
+                }
+            }
+        });
+
+        // ============================================================
+        // LOAD RESULTS
+        // ============================================================
+        async function loadResults() {
+            resultsBody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding:30px;">Loading results...</td></tr>';
+
+            try {
+                const q = query(collection(db, 'exam-results'), orderBy('submittedAt', 'desc'));
+                const querySnapshot = await getDocs(q);
+                
+                allResults = [];
+                querySnapshot.forEach((doc) => {
+                    allResults.push({ id: doc.id, ...doc.data() });
+                });
+
+                console.log('📊 Results loaded:', allResults.length);
+                applyFilters();
+
+            } catch (error) {
+                console.error('Error loading results:', error);
+                resultsBody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding:30px; color:#dc3545;">❌ Error loading results. Please refresh.</td></tr>';
+            }
+        }
+
+        // ============================================================
+        // APPLY FILTERS
+        // ============================================================
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            const testFilter = testFilterSelect.value;
+            const sortType = sortSelect.value;
+
+            // Filter
+            let filtered = [...allResults];
+
+            if (testFilter !== 'all') {
+                filtered = filtered.filter(r => r.testId === testFilter);
+            }
+
+            if (searchTerm) {
+                filtered = filtered.filter(r => 
+                    (r.studentName?.toLowerCase().includes(searchTerm) || 
+                     r.username?.toLowerCase().includes(searchTerm))
+                );
+            }
+
+            // Sort
+            switch(sortType) {
+                case 'highest':
+                    filtered.sort((a, b) => (b.score || 0) - (a.score || 0));
+                    break;
+                case 'lowest':
+                    filtered.sort((a, b) => (a.score || 0) - (b.score || 0));
+                    break;
+                case 'latest':
+                default:
+                    filtered.sort((a, b) => new Date(b.submittedAt) - new Date(a.submittedAt));
+                    break;
+            }
+
+            filteredResults = filtered;
+            displayResults(filteredResults);
+            updateStats(filteredResults);
+        }
+
+        // ============================================================
+        // DISPLAY RESULTS
+        // ============================================================
+        function displayResults(results) {
+            if (results.length === 0) {
+                resultsBody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding:30px;">No results found</td></tr>';
+                return;
+            }
+
+            resultsBody.innerHTML = results.map((result, index) => {
+                const passClass = result.passFail === 'Pass' ? 'status-pass' : 'status-fail';
+                const testClass = result.testId === 'test1' ? 'test-badge test1' : 
+                                 result.testId === 'test2' ? 'test-badge test2' : 'test-badge unknown';
+                const testLabel = result.testName || 'N/A';
+                
+                return `
+                    <tr>
+                        <td>${index + 1}</td>
+                        <td><strong>${result.studentName || 'N/A'}</strong></td>
+                        <td>${result.username || 'N/A'}</td>
+                        <td><span class="${testClass}">${testLabel}</span></td>
+                        <td>${result.score || 0}/${result.totalQuestions || 0}</td>
+                        <td>${result.percentage || 0}%</td>
+                        <td>
+                            <span class="status-badge ${passClass}">
+                                ${result.passFail || 'N/A'}
+                            </span>
+                        </td>
+                        <td>${result.examDate || 'N/A'}</td>
+                        <td>${result.timeTaken ? `${Math.floor(result.timeTaken / 60)}m ${result.timeTaken % 60}s` : 'N/A'}</td>
+                    </tr>
+                `;
+            }).join('');
+
+            // Update count
+            resultCount.innerHTML = `📊 Total Results: <strong>${results.length}</strong> ${results.length !== allResults.length ? `(filtered from ${allResults.length})` : ''}`;
+        }
+
+        // ============================================================
+        // UPDATE STATISTICS
+        // ============================================================
+        function updateStats(results) {
+            const totalStudents = EXAM_STUDENTS.length;
+            const totalResults = results.length;
+            const passCount = results.filter(r => r.passFail === 'Pass').length;
+            const failCount = results.filter(r => r.passFail === 'Fail').length;
+
+            document.getElementById('totalStudents').textContent = totalStudents;
+            document.getElementById('totalResults').textContent = totalResults;
+            document.getElementById('passCount').textContent = passCount;
+            document.getElementById('failCount').textContent = failCount;
+        }
+
+        // ============================================================
+        // EVENT LISTENERS
+        // ============================================================
+        searchInput.addEventListener('input', applyFilters);
+        testFilterSelect.addEventListener('change', applyFilters);
+        sortSelect.addEventListener('change', applyFilters);
+        refreshBtn.addEventListener('click', loadResults);
+
+        adminLogoutBtn.addEventListener('click', () => {
+            if (confirm('Are you sure you want to logout?')) {
+                localStorage.removeItem('adminLoggedIn');
+                window.location.href = '../index.html';
+            }
+        });
+
+        // ============================================================
+        // CHECK ADMIN LOGIN
+        // ============================================================
+        const adminLoggedIn = localStorage.getItem('adminLoggedIn');
+        if (!adminLoggedIn) {
+            const password = prompt('Enter admin password:');
+            if (password === 'admin123') {
+                localStorage.setItem('adminLoggedIn', 'true');
+            } else {
+                alert('Invalid admin password!');
+                window.location.href = '../index.html';
+            }
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        loadTestManagement();
+        loadResults();
+
+        console.log('🏫 Presentation Master Academy - Admin Dashboard');
+        console.log('📊 Total Students:', EXAM_STUDENTS.length);
+        console.log('📝 Tests Available:', Object.keys(ALL_TESTS).length);
+
+    </script>
+</body>
+</html>

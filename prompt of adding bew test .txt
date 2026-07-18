@@ -1,0 +1,272 @@
+ASSALAM-O-ALAIKUM! I want to add a NEW TEST to my examination system.
+
+Please use the existing data.js file structure below and add my new test to it.
+
+============================================================================
+EXISTING DATA.JS STRUCTURE (DO NOT CHANGE EXISTING TESTS):
+============================================================================
+
+// ============================================================
+// COLLEGE INFORMATION
+// ============================================================
+export const COLLEGE_INFO = {
+    name: 'College of Nursing Female Nawabshah',
+    shortName: 'CON Nawabshah',
+    location: 'Nawabshah, Sindh',
+    currentSession: '2026',
+    firebaseProject: 'college-nursing-nawabshah'
+};
+
+// ============================================================
+// STUDENTS LIST (DO NOT CHANGE)
+// ============================================================
+export const EXAM_STUDENTS = [
+    { name: 'AFHSAN', username: 'student51', password: '51' },
+    { name: 'AL SHIFA', username: 'student52', password: '52' },
+    { name: 'ALMAS HUSSAIN', username: 'student53', password: '53' },
+    { name: 'AMBAR', username: 'student54', password: '54' },
+    { name: 'AMBREEN', username: 'student55', password: '55' },
+    { name: 'AMEENA', username: 'student56', password: '56' },
+    { name: 'AMNA', username: 'student57', password: '57' },
+    { name: 'AROOJ FATIMA', username: 'student58', password: '58' },
+    { name: 'ATIFA', username: 'student59', password: '59' },
+    { name: 'ATTIA ALI', username: 'student60', password: '60' },
+    { name: 'AYESHA KHANUM JUNEJO', username: 'student61', password: '61' },
+    { name: 'BAKHTAWAR', username: 'student62', password: '62' },
+    { name: 'EMAAN AHMED', username: 'student63', password: '63' },
+    { name: 'FALAK SHAHIBAZ', username: 'student64', password: '64' },
+    { name: 'FARYAL', username: 'student65', password: '65' },
+    { name: 'HANIFAN', username: 'student66', password: '66' },
+    { name: 'HEER JAVED', username: 'student67', password: '67' },
+    { name: 'HIRA', username: 'student68', password: '68' },
+    { name: 'IMAMZADI', username: 'student69', password: '69' },
+    { name: 'IQRA ZAHID', username: 'student70', password: '70' },
+    { name: 'KAINAT', username: 'student71', password: '71' },
+    { name: 'KAINAT', username: 'student72', password: '72' },
+    { name: 'KAINAT TARIQUE', username: 'student73', password: '73' },
+    { name: 'KANWAL', username: 'student74', password: '74' },
+    { name: 'KIRAN', username: 'student75', password: '75' },
+    { name: 'KULSOOM', username: 'student76', password: '76' },
+    { name: 'LAIBA', username: 'student77', password: '77' },
+    { name: 'LAREB JAMALI', username: 'student78', password: '78' },
+    { name: 'MAHNOOR', username: 'student79', password: '79' },
+    { name: 'MAHWISH', username: 'student80', password: '80' },
+    { name: 'MARIA', username: 'student81', password: '81' },
+    { name: 'MISBAH', username: 'student82', password: '82' },
+    { name: 'NAZEER BEGUM', username: 'student83', password: '83' },
+    { name: 'NAZIA', username: 'student84', password: '84' },
+    { name: 'NISHA', username: 'student85', password: '85' },
+    { name: 'REEMAL', username: 'student86', password: '86' },
+    { name: 'REENA PARVEEN', username: 'student87', password: '87' },
+    { name: 'REHANA', username: 'student88', password: '88' },
+    { name: 'RIZWANA', username: 'student89', password: '89' },
+    { name: 'ROSHAN GUL', username: 'student90', password: '90' },
+    { name: 'SADAF NAZ', username: 'student91', password: '91' },
+    { name: 'SANA ALI', username: 'student92', password: '92' },
+    { name: 'SANA BATOOL', username: 'student93', password: '93' },
+    { name: 'SANOBER', username: 'student94', password: '94' },
+    { name: 'TAHIRA BATOOL', username: 'student95', password: '95' },
+    { name: 'TANIYA', username: 'student96', password: '96' },
+    { name: 'TOOBA', username: 'student97', password: '97' },
+    { name: 'UROOJ', username: 'student98', password: '98' },
+    { name: 'UROOSA', username: 'student99', password: '99' },
+    { name: 'UZMA', username: 'student100', password: '100' }
+];
+
+// ============================================================
+// TEST 1: Cellular Trauma & Injury (25 Questions) - KEEP AS IS
+// ============================================================
+const TEST1_QUESTIONS = [
+    // [25 questions - DO NOT CHANGE]
+];
+
+// ============================================================
+// TEST 2: Pathophysiology (50 Questions) - KEEP AS IS
+// ============================================================
+const TEST2_QUESTIONS = [
+    // [50 questions - DO NOT CHANGE]
+];
+
+// ============================================================
+// TEST 3: Immunological Disorders (30 Questions) - KEEP AS IS
+// ============================================================
+const TEST3_QUESTIONS = [
+    // [30 questions - DO NOT CHANGE]
+];
+
+// ============================================================
+// TEST 4: Basic Biology (5 Questions) - KEEP AS IS
+// ============================================================
+const TEST4_QUESTIONS = [
+    {
+        id: 1,
+        question: "Which organelle is known as the 'powerhouse of the cell' because it produces the majority of the cell's energy (ATP)?",
+        options: {
+            A: "Ribosome",
+            B: "Nucleus",
+            C: "Mitochondria",
+            D: "Golgi apparatus"
+        },
+        correct: "C"
+    },
+    {
+        id: 2,
+        question: "In a DNA molecule, which of the following nitrogenous bases pairs with Guanine (G)?",
+        options: {
+            A: "Adenine (A)",
+            B: "Thymine (T)",
+            C: "Guanine (G)",
+            D: "Cytosine (C)"
+        },
+        correct: "D"
+    },
+    {
+        id: 3,
+        question: "What is the primary function of the red blood cells (erythrocytes) in the human body?",
+        options: {
+            A: "To fight against infections",
+            B: "To transport oxygen from the lungs to the body's tissues",
+            C: "To help in blood clotting",
+            D: "To carry nutrients from the digestive system"
+        },
+        correct: "B"
+    },
+    {
+        id: 4,
+        question: "The process by which plants convert light energy into chemical energy (glucose) is called:",
+        options: {
+            A: "Respiration",
+            B: "Transpiration",
+            C: "Photosynthesis",
+            D: "Fermentation"
+        },
+        correct: "C"
+    },
+    {
+        id: 5,
+        question: "A group of similar cells that work together to perform a specific function is called a:",
+        options: {
+            A: "Organ",
+            B: "Tissue",
+            C: "Organ system",
+            D: "Organism"
+        },
+        correct: "B"
+    }
+];
+
+// ============================================================
+// ALL TESTS - KEEP EXISTING, ADD NEW TEST
+// ============================================================
+export const ALL_TESTS = {
+    test1: {
+        id: 'test1',
+        name: 'Cellular Trauma & Injury',
+        description: '25 MCQs on Cellular Trauma and Injury',
+        totalQuestions: 25,
+        timeLimit: 30,
+        passingScore: 50,
+        questions: TEST1_QUESTIONS
+    },
+    test2: {
+        id: 'test2',
+        name: 'Pathophysiology',
+        description: '50 MCQs on Pathophysiology',
+        totalQuestions: 50,
+        timeLimit: 50,
+        passingScore: 50,
+        questions: TEST2_QUESTIONS
+    },
+    test3: {
+        id: 'test3',
+        name: 'Immunological Disorders',
+        description: '30 MCQs on Immunological Disorders',
+        totalQuestions: 30,
+        timeLimit: 30,
+        passingScore: 50,
+        questions: TEST3_QUESTIONS
+    },
+    test4: {
+        id: 'test4',
+        name: 'Basic Biology',
+        description: '5 MCQs on Basic Biology',
+        totalQuestions: 5,
+        timeLimit: 10,
+        passingScore: 50,
+        questions: TEST4_QUESTIONS
+    }
+    // 👇 ADD NEW TEST HERE
+};
+
+// ============================================================
+// TEST SWITCHING FUNCTIONS - DO NOT CHANGE
+// ============================================================
+export const getActiveTestId = () => {
+    try {
+        const savedTestId = localStorage.getItem('activeTestId');
+        if (savedTestId && ALL_TESTS[savedTestId]) {
+            return savedTestId;
+        }
+    } catch (error) {
+        console.warn('Error reading from localStorage:', error);
+    }
+    return 'test1';
+};
+
+export const setActiveTestId = (testId) => {
+    try {
+        if (ALL_TESTS[testId]) {
+            localStorage.setItem('activeTestId', testId);
+            return true;
+        }
+        return false;
+    } catch (error) {
+        console.error('Error saving to localStorage:', error);
+        return false;
+    }
+};
+
+// ============================================================
+// CURRENT ACTIVE TEST
+// ============================================================
+export const ACTIVE_TEST_ID = getActiveTestId();
+export const EXAM_QUESTIONS = ALL_TESTS[ACTIVE_TEST_ID].questions;
+export const CURRENT_TEST = ALL_TESTS[ACTIVE_TEST_ID];
+
+============================================================================
+NEW TEST TO ADD:
+============================================================================
+
+TEST NAME: [Your Test Name Here]
+TOTAL QUESTIONS: [Number]
+TIME LIMIT: [Minutes]
+
+QUESTIONS:
+
+1. [Your Question 1]
+A) [Option A]
+B) [Option B]
+C) [Option C]
+D) [Option D]
+Correct Answer: [A/B/C/D]
+
+2. [Your Question 2]
+A) [Option A]
+B) [Option B]
+C) [Option C]
+D) [Option D]
+Correct Answer: [A/B/C/D]
+
+[Continue for all questions...]
+
+============================================================================
+INSTRUCTIONS:
+============================================================================
+
+1. DO NOT change any existing tests (test1, test2, test3, test4)
+2. ADD my new test as test5 in ALL_TESTS
+3. Create TEST5_QUESTIONS constant
+4. Give me the COMPLETE data.js file
+5. Make sure the format matches exactly
+
+Please give me the COMPLETE data.js file with this new test added.
