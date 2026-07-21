@@ -49,7 +49,7 @@ export const EXAM_STUDENTS = [
     { name: 'FEROZ', username: 'student34', password: '34' },
     { name: 'GHAZALA', username: 'student35', password: '35' },
     { name: 'GULZAR', username: 'student36', password: '36' },
-    { name: 'HABIB', username: 'student37', password: '37' },
+    { name: 'DUA', username: 'student37', password: '37' },
     { name: 'HAFSA', username: 'student38', password: '38' },
     { name: 'HAIDER', username: 'student39', password: '39' },
     { name: 'HALEEMA', username: 'student40', password: '40' },
