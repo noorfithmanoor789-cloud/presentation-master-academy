@@ -656,6 +656,232 @@ const TEST2_QUESTIONS = [
 ];
 
 // ============================================================
+// 🆕 TEST 3: Cell Biology (20 Questions)
+// ============================================================
+const TEST3_QUESTIONS = [
+    {
+        id: 1,
+        question: "What is the basic structural and functional unit of life?",
+        options: {
+            A: "Organ",
+            B: "Tissue",
+            C: "Cell",
+            D: "System"
+        },
+        correct: "C"
+    },
+    {
+        id: 2,
+        question: "Who discovered the cell in 1665?",
+        options: {
+            A: "Antonie van Leeuwenhoek",
+            B: "Robert Hooke",
+            C: "Rudolf Virchow",
+            D: "Matthias Schleiden"
+        },
+        correct: "B"
+    },
+    {
+        id: 3,
+        question: "What are the two types of cells mentioned?",
+        options: {
+            A: "Plant and Animal",
+            B: "Prokaryotic and Eukaryotic",
+            C: "Muscle and Nerve",
+            D: "Stem and Somatic"
+        },
+        correct: "B"
+    },
+    {
+        id: 4,
+        question: "Which organelle controls the entry and exit of substances?",
+        options: {
+            A: "Nucleus",
+            B: "Mitochondria",
+            C: "Cell Membrane",
+            D: "Ribosome"
+        },
+        correct: "C"
+    },
+    {
+        id: 5,
+        question: "What does the nucleus contain?",
+        options: {
+            A: "ATP",
+            B: "Proteins",
+            C: "DNA",
+            D: "Lipids"
+        },
+        correct: "C"
+    },
+    {
+        id: 6,
+        question: "Which organelle produces energy (ATP)?",
+        options: {
+            A: "Nucleus",
+            B: "Cell Membrane",
+            C: "Mitochondria",
+            D: "Vacuole"
+        },
+        correct: "C"
+    },
+    {
+        id: 7,
+        question: "The nucleus controls what?",
+        options: {
+            A: "Energy production",
+            B: "Cell activities",
+            C: "Entry and exit of substances",
+            D: "Cell division only"
+        },
+        correct: "B"
+    },
+    {
+        id: 8,
+        question: "Which type of cell is NOT mentioned in the outline?",
+        options: {
+            A: "Prokaryotic",
+            B: "Eukaryotic",
+            C: "Animal",
+            D: "Both a and b are mentioned"
+        },
+        correct: "C"
+    },
+    {
+        id: 9,
+        question: "Which organelle is responsible for producing ATP?",
+        options: {
+            A: "Cell Membrane",
+            B: "Nucleus",
+            C: "Mitochondria",
+            D: "Ribosome"
+        },
+        correct: "C"
+    },
+    {
+        id: 10,
+        question: "The cell membrane controls:",
+        options: {
+            A: "DNA replication",
+            B: "Entry and exit",
+            C: "Energy production",
+            D: "Protein synthesis"
+        },
+        correct: "B"
+    },
+    {
+        id: 11,
+        question: "How many types of cells are listed in the outline?",
+        options: {
+            A: "One",
+            B: "Two",
+            C: "Three",
+            D: "Four"
+        },
+        correct: "B"
+    },
+    {
+        id: 12,
+        question: "The nucleus contains DNA and also:",
+        options: {
+            A: "Produces energy",
+            B: "Controls entry and exit",
+            C: "Controls cell activities",
+            D: "Makes proteins"
+        },
+        correct: "C"
+    },
+    {
+        id: 13,
+        question: "Mitochondria are known for producing:",
+        options: {
+            A: "Glucose",
+            B: "ATP",
+            C: "DNA",
+            D: "Oxygen"
+        },
+        correct: "B"
+    },
+    {
+        id: 14,
+        question: "Robert Hooke discovered the cell in which year?",
+        options: {
+            A: "1655",
+            B: "1665",
+            C: "1675",
+            D: "1685"
+        },
+        correct: "B"
+    },
+    {
+        id: 15,
+        question: "Which of the following is NOT an organelle listed?",
+        options: {
+            A: "Nucleus",
+            B: "Mitochondria",
+            C: "Cell Membrane",
+            D: "Golgi apparatus"
+        },
+        correct: "D"
+    },
+    {
+        id: 16,
+        question: "The basic structural and functional unit of life is the:",
+        options: {
+            A: "Tissue",
+            B: "Organ",
+            C: "Cell",
+            D: "System"
+        },
+        correct: "C"
+    },
+    {
+        id: 17,
+        question: "Which organelle contains DNA according to the outline?",
+        options: {
+            A: "Mitochondria",
+            B: "Cell Membrane",
+            C: "Nucleus",
+            D: "Cytoplasm"
+        },
+        correct: "C"
+    },
+    {
+        id: 18,
+        question: "How many organelles are listed in the outline?",
+        options: {
+            A: "Two",
+            B: "Three",
+            C: "Four",
+            D: "Five"
+        },
+        correct: "B"
+    },
+    {
+        id: 19,
+        question: "Which of these is a function of the mitochondria?",
+        options: {
+            A: "Controls entry and exit",
+            B: "Contains DNA",
+            C: "Produces energy (ATP)",
+            D: "Controls cell activities"
+        },
+        correct: "C"
+    },
+    {
+        id: 20,
+        question: "The cell is the basic unit of:",
+        options: {
+            A: "Structure only",
+            B: "Function only",
+            C: "Structure and function",
+            D: "Reproduction only"
+        },
+        correct: "C"
+    }
+];
+
+// ============================================================
 // ALL TESTS
 // ============================================================
 export const ALL_TESTS = {
@@ -676,6 +902,15 @@ export const ALL_TESTS = {
         timeLimit: 30,
         passingScore: 50,
         questions: TEST2_QUESTIONS
+    },
+    test3: {
+        id: 'test3',
+        name: 'Cell Biology',
+        description: '20 MCQs on Cell Biology',
+        totalQuestions: 20,
+        timeLimit: 20,
+        passingScore: 50,
+        questions: TEST3_QUESTIONS
     }
 };
 
@@ -691,7 +926,7 @@ export const getActiveTestId = () => {
     } catch (error) {
         console.warn('Error reading from localStorage:', error);
     }
-    return 'test1';
+    return 'test3'; // Default to Cell Biology
 };
 
 export const setActiveTestId = (testId) => {
