@@ -49,7 +49,7 @@ export const EXAM_STUDENTS = [
     { name: 'FEROZ', username: 'student34', password: '34' },
     { name: 'GHAZALA', username: 'student35', password: '35' },
     { name: 'GULZAR', username: 'student36', password: '36' },
-    { name: 'DUA', username: 'student37', password: '37' },
+    { name: 'HABIB', username: 'student37', password: '37' },
     { name: 'HAFSA', username: 'student38', password: '38' },
     { name: 'HAIDER', username: 'student39', password: '39' },
     { name: 'HALEEMA', username: 'student40', password: '40' },
@@ -116,769 +116,107 @@ export const EXAM_STUDENTS = [
 ];
 
 // ============================================================
-// TEST 1: Biology - Chapter 1 (24 Questions)
+// TEST 1: Computer Basics (20 Questions)
 // ============================================================
 const TEST1_QUESTIONS = [
-    {
-        id: 1,
-        question: "Viruses are considered acellular because they lack:",
-        options: {
-            A: "Cell membrane",
-            B: "Nucleus",
-            C: "Both A and B",
-            D: "None of these"
-        },
-        correct: "C"
-    },
-    {
-        id: 2,
-        question: "Which of the following is NOT a basis for virus classification?",
-        options: {
-            A: "Type of nucleic acid",
-            B: "Shape and structure",
-            C: "Color of virus",
-            D: "Host organism"
-        },
-        correct: "C"
-    },
-    {
-        id: 3,
-        question: "HIV belongs to which group of viruses based on nucleic acid?",
-        options: {
-            A: "DNA virus",
-            B: "RNA virus",
-            C: "Both DNA and RNA",
-            D: "None"
-        },
-        correct: "B"
-    },
-    {
-        id: 4,
-        question: "Which virus has single-stranded RNA and causes AIDS?",
-        options: {
-            A: "Hepatitis virus",
-            B: "HIV",
-            C: "Influenza virus",
-            D: "Polio virus"
-        },
-        correct: "B"
-    },
-    {
-        id: 5,
-        question: "Retroviruses like HIV contain which enzyme?",
-        options: {
-            A: "DNA polymerase",
-            B: "RNA polymerase",
-            C: "Reverse transcriptase",
-            D: "Helicase"
-        },
-        correct: "C"
-    },
-    {
-        id: 6,
-        question: "The protein coat of a virus is called:",
-        options: {
-            A: "Capsid",
-            B: "Envelope",
-            C: "Nucleus",
-            D: "Cell wall"
-        },
-        correct: "A"
-    },
-    {
-        id: 7,
-        question: "Which type of virus infects bacteria?",
-        options: {
-            A: "Retrovirus",
-            B: "Bacteriophage",
-            C: "Coronavirus",
-            D: "Adenovirus"
-        },
-        correct: "B"
-    },
-    {
-        id: 8,
-        question: "HIV primarily attacks which cells in the human body?",
-        options: {
-            A: "Red blood cells",
-            B: "Helper T-cells",
-            C: "B-cells",
-            D: "Platelets"
-        },
-        correct: "B"
-    },
-    {
-        id: 9,
-        question: "AIDS stands for:",
-        options: {
-            A: "Acquired Immune Disease Syndrome",
-            B: "Acquired Immuno Deficiency Syndrome",
-            C: "Acquired Immune Deficiency System",
-            D: "Acute Immune Deficiency Syndrome"
-        },
-        correct: "B"
-    },
-    {
-        id: 10,
-        question: "Which of the following is a mode of HIV transmission?",
-        options: {
-            A: "Mosquito bite",
-            B: "Sexual contact",
-            C: "Coughing",
-            D: "Hugging"
-        },
-        correct: "B"
-    },
-    {
-        id: 11,
-        question: "Viruses are classified on the basis of their structure, number of strands, diseases, and:",
-        options: {
-            A: "Size",
-            B: "Hosts",
-            C: "Color",
-            D: "Temperature"
-        },
-        correct: "B"
-    },
-    {
-        id: 12,
-        question: "Which virus contains double-stranded DNA?",
-        options: {
-            A: "HIV",
-            B: "Polio virus",
-            C: "Adenovirus",
-            D: "Influenza virus"
-        },
-        correct: "C"
-    },
-    {
-        id: 13,
-        question: "The outer lipid layer of some viruses is called:",
-        options: {
-            A: "Capsid",
-            B: "Envelope",
-            C: "Cell membrane",
-            D: "Cell wall"
-        },
-        correct: "B"
-    },
-    {
-        id: 14,
-        question: "Which of these is a symptom of AIDS?",
-        options: {
-            A: "Fever and weight loss",
-            B: "Skin rashes",
-            C: "Recurrent infections",
-            D: "All of these"
-        },
-        correct: "D"
-    },
-    {
-        id: 15,
-        question: "Viruses are obligate intracellular parasites because they:",
-        options: {
-            A: "Can live independently",
-            B: "Cannot reproduce outside host",
-            C: "Have no DNA",
-            D: "Are too small"
-        },
-        correct: "B"
-    },
-    {
-        id: 16,
-        question: "The genetic material of HIV is:",
-        options: {
-            A: "Double-stranded DNA",
-            B: "Single-stranded DNA",
-            C: "Double-stranded RNA",
-            D: "Single-stranded RNA"
-        },
-        correct: "D"
-    },
-    {
-        id: 17,
-        question: "Which disease is caused by a retrovirus?",
-        options: {
-            A: "Hepatitis B",
-            B: "AIDS",
-            C: "Polio",
-            D: "Common cold"
-        },
-        correct: "B"
-    },
-    {
-        id: 18,
-        question: "Transmission of HIV can occur through:",
-        options: {
-            A: "Blood transfusion",
-            B: "Breast milk",
-            C: "Unprotected sex",
-            D: "All of these"
-        },
-        correct: "D"
-    },
-    {
-        id: 19,
-        question: "A virus that infects plants is classified as:",
-        options: {
-            A: "Bacteriophage",
-            B: "Plant virus",
-            C: "Animal virus",
-            D: "Fungal virus"
-        },
-        correct: "B"
-    },
-    {
-        id: 20,
-        question: "Which virus causes COVID-19?",
-        options: {
-            A: "HIV",
-            B: "SARS-CoV-2",
-            C: "Hepatitis",
-            D: "Influenza"
-        },
-        correct: "B"
-    },
-    {
-        id: 21,
-        question: "The capsid of a virus is made up of:",
-        options: {
-            A: "Lipids",
-            B: "Proteins",
-            C: "Carbohydrates",
-            D: "Nucleic acids"
-        },
-        correct: "B"
-    },
-    {
-        id: 22,
-        question: "HIV destroys the immune system by infecting:",
-        options: {
-            A: "Macrophages",
-            B: "Helper T lymphocytes",
-            C: "B lymphocytes",
-            D: "All of these"
-        },
-        correct: "B"
-    },
-    {
-        id: 23,
-        question: "Which of the following is NOT transmitted by HIV?",
-        options: {
-            A: "Tuberculosis",
-            B: "AIDS",
-            C: "Kaposi's sarcoma",
-            D: "Pneumonia"
-        },
-        correct: "A"
-    },
-    {
-        id: 24,
-        question: "The shape of HIV is:",
-        options: {
-            A: "Spherical",
-            B: "Rod-shaped",
-            C: "Spiral",
-            D: "Brick-shaped"
-        },
-        correct: "A"
-    }
+    { id: 1, question: "According to the presentation, a computer is an electronic device that takes some input, processes it, and produces ______.", options: { A: "memory", B: "output", C: "software", D: "hardware" }, correct: "B" },
+    { id: 2, question: "Which of the following are the four essential functions a computer performs?", options: { A: "Accepts, Manipulates, Produces, Stores", B: "Inputs, Outputs, Prints, Saves", C: "Reads, Writes, Calculates, Displays", D: "Accepts, Deletes, Produces, Shares" }, correct: "A" },
+    { id: 3, question: "When did the first fully electronic computers appear?", options: { A: "1920s", B: "1940s", C: "1960s", D: "1980s" }, correct: "B" },
+    { id: 4, question: "In medicine, computers support disease diagnosis and treatment planning, helping clinicians identify cures more ______.", options: { A: "cheaply", B: "efficiently", C: "slowly", D: "manually" }, correct: "B" },
+    { id: 5, question: "Which specialized software drives magnetic resonance imaging (MRI) to examine the body's internal organs?", options: { A: "System software", B: "Application software", C: "Medical imaging software", D: "Barcode software" }, correct: "C" },
+    { id: 6, question: "In the Input–Process–Output cycle, what is described as 'data provided to the computer for processing'?", options: { A: "Output", B: "Process", C: "Input", D: "Storage" }, correct: "C" },
+    { id: 7, question: "In the Input–Process–Output cycle, what does the OUTPUT stage deliver?", options: { A: "The raw data before processing", B: "The commands applied to data", C: "The data produced after processing — the result of the input", D: "The instructions stored in memory" }, correct: "C" },
+    { id: 8, question: "Unprocessed facts and figures are called ______.", options: { A: "information", B: "data", C: "output", D: "software" }, correct: "B" },
+    { id: 9, question: "The word 'information' comes from the Latin informare, which means ______.", options: { A: "'to compute'", B: "'to give form to'", C: "'to store data'", D: "'to process'" }, correct: "B" },
+    { id: 10, question: "Which of the following is TRUE about hardware?", options: { A: "It is intangible and cannot be touched", B: "It is a set of instructions that guides the computer", C: "It refers to the physical, tangible parts of a computer", D: "It only includes the CPU" }, correct: "C" },
+    { id: 11, question: "Which of the following is an example of System Software?", options: { A: "MS Paint", B: "Notepad", C: "Photoshop", D: "Windows" }, correct: "D" },
+    { id: 12, question: "Application software is best described as:", options: { A: "Main, general-purpose software that operates the hardware", B: "Specific-purpose software used by end users to complete particular tasks", C: "Software that only works in the background", D: "Software that cannot be seen or used" }, correct: "B" },
+    { id: 13, question: "What are the three main components of a computer according to the presentation?", options: { A: "Monitor, Keyboard, Mouse", B: "Input Devices, Central Processing Unit, Output Devices", C: "RAM, ROM, Hard Disk", D: "System Software, Application Software, Hardware" }, correct: "B" },
+    { id: 14, question: "Which keyboard layout is the standard used in Western countries, named for the first six alphabetic keys on the top row?", options: { A: "AZERTY", B: "QWERTY", C: "QWERTZ", D: "ABCDEF" }, correct: "B" },
+    { id: 15, question: "Which input device is described as 'a screen you touch with a finger to enter information (e.g., ATMs)'?", options: { A: "Joystick", B: "Touch Screen", C: "Scanner", D: "Bar Code Scanner" }, correct: "B" },
+    { id: 16, question: "Which output device 'gives sound output similar to speakers, but worn on the ears so only one person hears it'?", options: { A: "Speaker", B: "Monitor", C: "Headphones", D: "Printer" }, correct: "C" },
+    { id: 17, question: "Which part of the CPU performs arithmetic functions (addition, subtraction, multiplication, division) and logical functions (AND, OR)?", options: { A: "Control Unit", B: "Registers", C: "Arithmetic & Logic Unit (ALU)", D: "RAM" }, correct: "C" },
+    { id: 18, question: "Which part of the CPU is described as 'small, high-speed storage areas inside the processor — faster than any other memory'?", options: { A: "ALU", B: "Registers", C: "Control Unit", D: "ROM" }, correct: "B" },
+    { id: 19, question: "Which of the following is TRUE about RAM?", options: { A: "It is non-volatile and retains data without power", B: "It is a form of volatile memory that does not retain data without power", C: "It is read-only memory", D: "It is an optical disc" }, correct: "B" },
+    { id: 20, question: "Which storage device is described as 'the main storage device — stores important data, the operating system, and application software'?", options: { A: "Floppy Disk", B: "Compact Disc (CD)", C: "Hard Disk", D: "USB Flash Drive" }, correct: "C" }
 ];
 
 // ============================================================
-// TEST 2: Biology - Chapter 2 (24 Questions)
+// TEST 2: The Internet (20 Questions)
 // ============================================================
 const TEST2_QUESTIONS = [
-    {
-        id: 1,
-        question: "Cellular respiration of proteins produces which final products?",
-        options: {
-            A: "Glucose",
-            B: "Amino acids",
-            C: "Urea and CO2",
-            D: "Fatty acids"
-        },
-        correct: "C"
-    },
-    {
-        id: 2,
-        question: "The respiration of fats yields which of the following?",
-        options: {
-            A: "Only ATP",
-            B: "ATP and water",
-            C: "ATP and glycerol",
-            D: "ATP, CO2, and water"
-        },
-        correct: "D"
-    },
-    {
-        id: 3,
-        question: "The respiration of glucose produces:",
-        options: {
-            A: "ATP, CO2, and water",
-            B: "Only ATP",
-            C: "Only CO2",
-            D: "Glucose and oxygen"
-        },
-        correct: "A"
-    },
-    {
-        id: 4,
-        question: "Fats are broken down into fatty acids and:",
-        options: {
-            A: "Glucose",
-            B: "Glycerol",
-            C: "Amino acids",
-            D: "Glycogen"
-        },
-        correct: "B"
-    },
-    {
-        id: 5,
-        question: "Proteins are first converted into which molecules before entering respiration?",
-        options: {
-            A: "Fatty acids",
-            B: "Amino acids",
-            C: "Glucose",
-            D: "Glycerol"
-        },
-        correct: "B"
-    },
-    {
-        id: 6,
-        question: "The energy yield per gram of fat is _____ than glucose.",
-        options: {
-            A: "Less",
-            B: "More",
-            C: "Equal",
-            D: "No energy"
-        },
-        correct: "B"
-    },
-    {
-        id: 7,
-        question: "The deamination of amino acids produces:",
-        options: {
-            A: "Glucose",
-            B: "Urea",
-            C: "Fatty acids",
-            D: "Glycerol"
-        },
-        correct: "B"
-    },
-    {
-        id: 8,
-        question: "Which of the following enters the Krebs cycle after breakdown?",
-        options: {
-            A: "Amino acids",
-            B: "Fatty acids",
-            C: "Glucose",
-            D: "All of these"
-        },
-        correct: "D"
-    },
-    {
-        id: 9,
-        question: "Beta-oxidation is the breakdown of:",
-        options: {
-            A: "Glucose",
-            B: "Fatty acids",
-            C: "Amino acids",
-            D: "Glycogen"
-        },
-        correct: "B"
-    },
-    {
-        id: 10,
-        question: "The end product of protein respiration includes:",
-        options: {
-            A: "CO2, H2O, and Urea",
-            B: "CO2 and H2O",
-            C: "Only Urea",
-            D: "Only ATP"
-        },
-        correct: "A"
-    },
-    {
-        id: 11,
-        question: "Which pathway is common for glucose, fats, and protein respiration?",
-        options: {
-            A: "Glycolysis",
-            B: "Krebs cycle",
-            C: "Electron transport chain",
-            D: "Both B and C"
-        },
-        correct: "D"
-    },
-    {
-        id: 12,
-        question: "Triglycerides are broken down into:",
-        options: {
-            A: "Glucose and glycogen",
-            B: "Fatty acids and glycerol",
-            C: "Amino acids",
-            D: "Nucleotides"
-        },
-        correct: "B"
-    },
-    {
-        id: 13,
-        question: "Amino acids are converted into acetyl-CoA after:",
-        options: {
-            A: "Oxidation",
-            B: "Deamination",
-            C: "Phosphorylation",
-            D: "Decarboxylation"
-        },
-        correct: "B"
-    },
-    {
-        id: 14,
-        question: "Fats produce more ATP because they have more:",
-        options: {
-            A: "Carbon atoms",
-            B: "Hydrogen atoms",
-            C: "Oxygen atoms",
-            D: "Nitrogen atoms"
-        },
-        correct: "B"
-    },
-    {
-        id: 15,
-        question: "The first step in fat respiration is:",
-        options: {
-            A: "Glycolysis",
-            B: "Lipolysis",
-            C: "Deamination",
-            D: "Oxidation"
-        },
-        correct: "B"
-    },
-    {
-        id: 16,
-        question: "Glucose is broken down into pyruvate in which process?",
-        options: {
-            A: "Krebs cycle",
-            B: "Glycolysis",
-            C: "Beta-oxidation",
-            D: "Electron transport"
-        },
-        correct: "B"
-    },
-    {
-        id: 17,
-        question: "Which of the following produces the most ATP?",
-        options: {
-            A: "Glucose",
-            B: "Proteins",
-            C: "Fats",
-            D: "All equal"
-        },
-        correct: "C"
-    },
-    {
-        id: 18,
-        question: "The nitrogenous waste product of protein metabolism is:",
-        options: {
-            A: "Ammonia",
-            B: "Urea",
-            C: "Uric acid",
-            D: "Creatinine"
-        },
-        correct: "B"
-    },
-    {
-        id: 19,
-        question: "Fatty acids are broken down through:",
-        options: {
-            A: "Glycolysis",
-            B: "Beta-oxidation",
-            C: "Krebs cycle",
-            D: "Fermentation"
-        },
-        correct: "B"
-    },
-    {
-        id: 20,
-        question: "Glycerol enters glycolysis as:",
-        options: {
-            A: "Glucose",
-            B: "Fructose",
-            C: "DHAP",
-            D: "Acetyl-CoA"
-        },
-        correct: "C"
-    },
-    {
-        id: 21,
-        question: "Which of the following is NOT a product of fat respiration?",
-        options: {
-            A: "CO2",
-            B: "H2O",
-            C: "Urea",
-            D: "ATP"
-        },
-        correct: "C"
-    },
-    {
-        id: 22,
-        question: "The conversion of amino acids to carbohydrates is called:",
-        options: {
-            A: "Lipogenesis",
-            B: "Gluconeogenesis",
-            C: "Glycogenesis",
-            D: "Ketogenesis"
-        },
-        correct: "B"
-    },
-    {
-        id: 23,
-        question: "Cellular respiration is the process of breaking down food molecules to release:",
-        options: {
-            A: "Energy in the form of ATP",
-            B: "Only heat",
-            C: "Only carbon dioxide",
-            D: "Only water"
-        },
-        correct: "A"
-    },
-    {
-        id: 24,
-        question: "Which step is common to the respiration of glucose, fats, and proteins?",
-        options: {
-            A: "Glycolysis",
-            B: "Formation of acetyl-CoA",
-            C: "Beta-oxidation",
-            D: "Deamination"
-        },
-        correct: "B"
-    }
+    { id: 1, question: "What does the term Information Technology (IT) refer to?", options: { A: "An entire industry only", B: "The use of computers and software to manage information", C: "Only computer hardware", D: "Only the Internet" }, correct: "B" },
+    { id: 2, question: "IT is the branch of engineering that deals with computers and telecommunications to ______, store, and transmit information.", options: { A: "Delete", B: "Retrieve", C: "Print", D: "Format" }, correct: "B" },
+    { id: 3, question: "What does the word 'Internet' literally stand for?", options: { A: "Internal Network", B: "Inter (between) + Net (network)", C: "International Network", D: "Interface Network" }, correct: "B" },
+    { id: 4, question: "The Internet is a worldwide network connecting hundreds of thousands of smaller networks in more than ______ countries.", options: { A: "50", B: "100", C: "200", D: "500" }, correct: "C" },
+    { id: 5, question: "Unlike the light bulb or telephone, the Internet has ______.", options: { A: "One inventor", B: "No single inventor", C: "Two inventors", D: "A government inventor" }, correct: "B" },
+    { id: 6, question: "The Internet began in the United States more than 50 years ago as a government tool during the ______.", options: { A: "World War II", B: "Cold War", C: "Industrial Revolution", D: "Space Race" }, correct: "B" },
+    { id: 7, question: "Who is known as the Father of the Internet?", options: { A: "Bill Gates", B: "Vinton Cerf", C: "Tim Berners-Lee", D: "Steve Jobs" }, correct: "B" },
+    { id: 8, question: "What does TCP/IP stand for?", options: { A: "Transmission Control Protocol / Internet Protocol", B: "Transfer Control Program / Internet Program", C: "Total Control Protocol / Internal Protocol", D: "Transmission Computer Program / Internet Program" }, correct: "A" },
+    { id: 9, question: "ARPA stands for ______.", options: { A: "Advanced Research Program Agency", B: "Advanced Research Project Agency", C: "American Research Project Agency", D: "Advanced Regional Project Agency" }, correct: "B" },
+    { id: 10, question: "The experimental computer network started on January 2, 1969 was first named ______.", options: { A: "INTERNET", B: "ARPA", C: "ARPANET", D: "TCP/IP" }, correct: "C" },
+    { id: 11, question: "The first page of a website (which starts the website) is called the ______.", options: { A: "Webpage", B: "Home Page", C: "Browser", D: "Domain" }, correct: "B" },
+    { id: 12, question: "What is a 'web host'?", options: { A: "A software used to browse the web", B: "A computer that provides space to place a website for viewing on the Internet", C: "A name or address for a particular website", D: "A collection of web pages" }, correct: "B" },
+    { id: 13, question: "Transferring data from your local computer to the server is called ______.", options: { A: "Uploading", B: "Downloading", C: "Browsing", D: "Hosting" }, correct: "A" },
+    { id: 14, question: "Copying files back from the server to your local computer is called ______.", options: { A: "Uploading", B: "Downloading", C: "Hosting", D: "Surfing" }, correct: "B" },
+    { id: 15, question: "Today's e-mail is based on which model?", options: { A: "Real-time model", B: "Store-and-forward", C: "Peer-to-peer", D: "Broadcast" }, correct: "B" },
+    { id: 16, question: "In an e-mail address, the ______ symbol is unique to e-mail addresses.", options: { A: "#", B: "@", C: "$", D: "&" }, correct: "B" },
+    { id: 17, question: "The World Wide Web (WWW) is a system of interlinked ______ documents accessed via the Internet.", options: { A: "Text", B: "Hypertext", C: "Image", D: "Video" }, correct: "B" },
+    { id: 18, question: "Which protocol is described as 'the foundation of data communication for the World Wide Web'?", options: { A: "FTP", B: "HTTP", C: "IP", D: "TCP" }, correct: "B" },
+    { id: 19, question: "What does URL stand for?", options: { A: "Uniform Resource Locator", B: "Universal Reference Link", C: "Uniform Reference Locator", D: "Universal Resource Link" }, correct: "A" },
+    { id: 20, question: "Which search engine is described as 'privacy-focused, does not track users'?", options: { A: "Google", B: "Bing", C: "Yahoo! Search", D: "DuckDuckGo" }, correct: "D" }
 ];
 
 // ============================================================
-// 🆕 TEST 3: Cell Biology (20 Questions)
+// TEST 3: Understanding Essential Computer Concepts (20 Questions)
 // ============================================================
 const TEST3_QUESTIONS = [
-    {
-        id: 1,
-        question: "What is the basic structural and functional unit of life?",
-        options: {
-            A: "Organ",
-            B: "Tissue",
-            C: "Cell",
-            D: "System"
-        },
-        correct: "C"
-    },
-    {
-        id: 2,
-        question: "Who discovered the cell in 1665?",
-        options: {
-            A: "Antonie van Leeuwenhoek",
-            B: "Robert Hooke",
-            C: "Rudolf Virchow",
-            D: "Matthias Schleiden"
-        },
-        correct: "B"
-    },
-    {
-        id: 3,
-        question: "What are the two types of cells mentioned?",
-        options: {
-            A: "Plant and Animal",
-            B: "Prokaryotic and Eukaryotic",
-            C: "Muscle and Nerve",
-            D: "Stem and Somatic"
-        },
-        correct: "B"
-    },
-    {
-        id: 4,
-        question: "Which organelle controls the entry and exit of substances?",
-        options: {
-            A: "Nucleus",
-            B: "Mitochondria",
-            C: "Cell Membrane",
-            D: "Ribosome"
-        },
-        correct: "C"
-    },
-    {
-        id: 5,
-        question: "What does the nucleus contain?",
-        options: {
-            A: "ATP",
-            B: "Proteins",
-            C: "DNA",
-            D: "Lipids"
-        },
-        correct: "C"
-    },
-    {
-        id: 6,
-        question: "Which organelle produces energy (ATP)?",
-        options: {
-            A: "Nucleus",
-            B: "Cell Membrane",
-            C: "Mitochondria",
-            D: "Vacuole"
-        },
-        correct: "C"
-    },
-    {
-        id: 7,
-        question: "The nucleus controls what?",
-        options: {
-            A: "Energy production",
-            B: "Cell activities",
-            C: "Entry and exit of substances",
-            D: "Cell division only"
-        },
-        correct: "B"
-    },
-    {
-        id: 8,
-        question: "Which type of cell is NOT mentioned in the outline?",
-        options: {
-            A: "Prokaryotic",
-            B: "Eukaryotic",
-            C: "Animal",
-            D: "Both a and b are mentioned"
-        },
-        correct: "C"
-    },
-    {
-        id: 9,
-        question: "Which organelle is responsible for producing ATP?",
-        options: {
-            A: "Cell Membrane",
-            B: "Nucleus",
-            C: "Mitochondria",
-            D: "Ribosome"
-        },
-        correct: "C"
-    },
-    {
-        id: 10,
-        question: "The cell membrane controls:",
-        options: {
-            A: "DNA replication",
-            B: "Entry and exit",
-            C: "Energy production",
-            D: "Protein synthesis"
-        },
-        correct: "B"
-    },
-    {
-        id: 11,
-        question: "How many types of cells are listed in the outline?",
-        options: {
-            A: "One",
-            B: "Two",
-            C: "Three",
-            D: "Four"
-        },
-        correct: "B"
-    },
-    {
-        id: 12,
-        question: "The nucleus contains DNA and also:",
-        options: {
-            A: "Produces energy",
-            B: "Controls entry and exit",
-            C: "Controls cell activities",
-            D: "Makes proteins"
-        },
-        correct: "C"
-    },
-    {
-        id: 13,
-        question: "Mitochondria are known for producing:",
-        options: {
-            A: "Glucose",
-            B: "ATP",
-            C: "DNA",
-            D: "Oxygen"
-        },
-        correct: "B"
-    },
-    {
-        id: 14,
-        question: "Robert Hooke discovered the cell in which year?",
-        options: {
-            A: "1655",
-            B: "1665",
-            C: "1675",
-            D: "1685"
-        },
-        correct: "B"
-    },
-    {
-        id: 15,
-        question: "Which of the following is NOT an organelle listed?",
-        options: {
-            A: "Nucleus",
-            B: "Mitochondria",
-            C: "Cell Membrane",
-            D: "Golgi apparatus"
-        },
-        correct: "D"
-    },
-    {
-        id: 16,
-        question: "The basic structural and functional unit of life is the:",
-        options: {
-            A: "Tissue",
-            B: "Organ",
-            C: "Cell",
-            D: "System"
-        },
-        correct: "C"
-    },
-    {
-        id: 17,
-        question: "Which organelle contains DNA according to the outline?",
-        options: {
-            A: "Mitochondria",
-            B: "Cell Membrane",
-            C: "Nucleus",
-            D: "Cytoplasm"
-        },
-        correct: "C"
-    },
-    {
-        id: 18,
-        question: "How many organelles are listed in the outline?",
-        options: {
-            A: "Two",
-            B: "Three",
-            C: "Four",
-            D: "Five"
-        },
-        correct: "B"
-    },
-    {
-        id: 19,
-        question: "Which of these is a function of the mitochondria?",
-        options: {
-            A: "Controls entry and exit",
-            B: "Contains DNA",
-            C: "Produces energy (ATP)",
-            D: "Controls cell activities"
-        },
-        correct: "C"
-    },
-    {
-        id: 20,
-        question: "The cell is the basic unit of:",
-        options: {
-            A: "Structure only",
-            B: "Function only",
-            C: "Structure and function",
-            D: "Reproduction only"
-        },
-        correct: "C"
-    }
+    { id: 1, question: "First generation computers (1940–1956) used which of the following as circuitry?", options: { A: "Transistors", B: "Integrated Circuits", C: "Vacuum tubes", D: "Microprocessors" }, correct: "C" },
+    { id: 2, question: "Which of the following were notable machines of the first generation era?", options: { A: "UNIVAC and ENIAC", B: "IBM PC and Apple Macintosh", C: "Cray and Deep Blue", D: "Altair and Commodore" }, correct: "A" },
+    { id: 3, question: "In first generation computers, input was based on ______.", options: { A: "Keyboard and mouse", B: "Punched cards and paper tape", C: "Touchscreen", D: "Voice recognition" }, correct: "B" },
+    { id: 4, question: "In second generation computers (1956–1963), vacuum tubes were replaced by ______.", options: { A: "Integrated Circuits", B: "Microprocessors", C: "Transistors", D: "Artificial Intelligence" }, correct: "C" },
+    { id: 5, question: "The processor of second generation computers operated in the ______ speed range.", options: { A: "Millisecond", B: "Microsecond", C: "Nanosecond", D: "Picosecond" }, correct: "B" },
+    { id: 6, question: "The development of the Integrated Circuit (IC) was the hallmark of which generation?", options: { A: "First Generation", B: "Second Generation", C: "Third Generation", D: "Fourth Generation" }, correct: "C" },
+    { id: 7, question: "Which language was used for programming in third generation computers?", options: { A: "Machine language", B: "Assembly language", C: "High-level language", D: "Natural language" }, correct: "B" },
+    { id: 8, question: "Fourth generation computers were developed using ______ technology.", options: { A: "Vacuum tube", B: "Transistor", C: "Microprocessor", D: "ULSI" }, correct: "C" },
+    { id: 9, question: "The processors of fourth generation computers operate in the ______ speed range.", options: { A: "Millisecond", B: "Microsecond", C: "Nanosecond", D: "Picosecond" }, correct: "D" },
+    { id: 10, question: "Fifth generation computers (2010–Present) are based on which technology?", options: { A: "Vacuum tubes", B: "Transistors", C: "Integrated Circuits", D: "ULSI (Ultra Large Scale Integration)" }, correct: "D" },
+    { id: 11, question: "All AI computer programs are built on which two basic elements?", options: { A: "Hardware and software", B: "A knowledge base and an inferencing capability", C: "Input and output", D: "Data and information" }, correct: "B" },
+    { id: 12, question: "Which expert system supports the diagnosis of respiratory conditions?", options: { A: "PROSPECTOR", B: "PUFF", C: "ENIAC", D: "UNIVAC" }, correct: "B" },
+    { id: 13, question: "Which of the following is the largest and fastest of all computers?", options: { A: "Mainframe", B: "Supercomputer", C: "Desktop", D: "Notebook" }, correct: "B" },
+    { id: 14, question: "Which computer is described as 'a mobile computer with a touchscreen display, circuitry and battery in a single unit'?", options: { A: "Notebook", B: "Desktop", C: "Tablet PC", D: "Mainframe" }, correct: "C" },
+    { id: 15, question: "Which of the following is the main electronic component of the computer where processing tasks occur?", options: { A: "Hard Disk", B: "Motherboard", C: "Modem", D: "ROM BIOS" }, correct: "B" },
+    { id: 16, question: "What does ROM BIOS stand for?", options: { A: "Read Only Memory Basic Input/Output System", B: "Random Only Memory Basic Input/Output System", C: "Read Only Memory Binary Input/Output System", D: "Random Only Memory Binary Input/Output System" }, correct: "A" },
+    { id: 17, question: "Eight bits make a ______.", options: { A: "Kilobyte", B: "Byte", C: "Megabyte", D: "Gigabyte" }, correct: "B" },
+    { id: 18, question: "One Gigabyte (GB) is equal to ______.", options: { A: "One thousand bytes", B: "One million bytes", C: "One billion bytes", D: "One trillion bytes" }, correct: "C" },
+    { id: 19, question: "What is virtual memory?", options: { A: "Extra memory that simulates RAM if more is needed", B: "A type of ROM", C: "A storage device", D: "A type of optical drive" }, correct: "A" },
+    { id: 20, question: "Which of the following is TRUE about CD-ROMs?", options: { A: "They allow you to write and modify data", B: "They are for 'read-only' access", C: "They are the fastest storage devices", D: "They can only store audio files" }, correct: "B" }
+];
+
+// ============================================================
+// TEST 4: Cyber Security (20 Questions)
+// ============================================================
+const TEST4_QUESTIONS = [
+    { id: 1, question: "What is Cyber Security?", options: { A: "The body of technologies, processes and practices designed to protect networks, computers, programs and data from attack, damage or unauthorized access", B: "A type of computer virus", C: "The act of hacking computers and networks", D: "A programming language" }, correct: "A" },
+    { id: 2, question: "Cyber attacks are usually aimed at ______.", options: { A: "Speeding up computers", B: "Accessing, changing, or destroying sensitive information", C: "Installing new software", D: "Updating operating systems" }, correct: "B" },
+    { id: 3, question: "What is the goal of cyber security?", options: { A: "To ensure confidentiality, integrity, and availability of data", B: "To spread viruses", C: "To hack into networks", D: "To slow down computers" }, correct: "A" },
+    { id: 4, question: "Cyber crime includes any criminal act dealing with computers and networks, also called ______.", options: { A: "Spamming", B: "Hacking", C: "Browsing", D: "Programming" }, correct: "B" },
+    { id: 5, question: "Most cyber crime is committed by cyber criminals or hackers who want to ______.", options: { A: "Help people", B: "Make money", C: "Fix software", D: "Teach security" }, correct: "B" },
+    { id: 6, question: "What is a computer virus?", options: { A: "A hardware component", B: "A computer program that can copy itself and infect a computer without the permission or knowledge of the owner", C: "A type of anti-virus software", D: "A network cable" }, correct: "B" },
+    { id: 7, question: "One of the first detected viruses was the ______ virus in the early 1970s.", options: { A: "Melissa", B: "Creeper", C: "ILOVEYOU", D: "Conficker" }, correct: "B" },
+    { id: 8, question: "A time bomb is a virus program that performs a malicious activity on ______.", options: { A: "A particular date or time", B: "A certain action or condition", C: "Every computer startup", D: "Opening a document" }, correct: "A" },
+    { id: 9, question: "A logical bomb is a virus program that performs an activity when ______.", options: { A: "A particular date or time arrives", B: "A certain action or condition has occurred", C: "The computer is turned off", D: "A file is deleted" }, correct: "B" },
+    { id: 10, question: "Which of the following is a famous example of a worm?", options: { A: "Creeper", B: "Concept", C: "ILOVEYOU", D: "Melissa" }, correct: "C" },
+    { id: 11, question: "A boot sector virus infects the boot sector of computers and is loaded into main memory during ______.", options: { A: "System shutdown", B: "System boot", C: "File deletion", D: "Internet browsing" }, correct: "B" },
+    { id: 12, question: "A macro virus is associated with application software like ______.", options: { A: "Word and Excel", B: "Chrome and Firefox", C: "Windows and Linux", D: "Photoshop and Illustrator" }, correct: "A" },
+    { id: 13, question: "Most macro viruses are VBA viruses — VBA is the language used by Microsoft for its applications. What does VBA stand for?", options: { A: "Visual Basic for Applications", B: "Visual Binary Applications", C: "Virtual Basic for Applications", D: "Variable Basic for Applications" }, correct: "A" },
+    { id: 14, question: "Script viruses are written in scripting languages such as ______.", options: { A: "C++ and Java", B: "VBScript or JavaScript", C: "Python and Ruby", D: "HTML and CSS" }, correct: "B" },
+    { id: 15, question: "What is a Trojan Horse?", options: { A: "A virus that replicates itself across networks", B: "A destructive program that usually pretends to be a computer game or application software", C: "A type of anti-virus software", D: "A hardware component" }, correct: "B" },
+    { id: 16, question: "What do key loggers do?", options: { A: "Speed up the computer", B: "Record every keystroke to steal passwords and credit card numbers", C: "Clean the computer system", D: "Update software automatically" }, correct: "B" },
+    { id: 17, question: "According to the presentation, how often should you update your anti-virus software?", options: { A: "Once a year", B: "At least weekly", C: "Once a month", D: "Never" }, correct: "B" },
+    { id: 18, question: "Which of the following is a safe habit to prevent virus infection?", options: { A: "Open all e-mail attachments immediately", B: "Scan all external media and downloads before opening them", C: "Share Drive C: without a password", D: "Disable anti-virus software" }, correct: "B" },
+    { id: 19, question: "According to the presentation, where should computers be kept for Internet safety at home?", options: { A: "In private bedrooms", B: "In common family areas", C: "In the basement", D: "In the kitchen" }, correct: "B" },
+    { id: 20, question: "Which of the following is a recommended action for Internet safety at home?", options: { A: "Set up Internet filtering and schedule Internet access", B: "Allow unlimited access to all websites", C: "Keep computers in private bedrooms", D: "Never talk to children about online safety" }, correct: "A" }
 ];
 
 // ============================================================
@@ -887,30 +225,39 @@ const TEST3_QUESTIONS = [
 export const ALL_TESTS = {
     test1: {
         id: 'test1',
-        name: 'Biology Chapter 1 - Viruses',
-        description: '24 MCQs on Viruses and HIV',
-        totalQuestions: 24,
-        timeLimit: 30,
+        name: 'Computer Basics',
+        description: '20 MCQs on Computer Basics',
+        totalQuestions: 20,
+        timeLimit: 25,
         passingScore: 50,
         questions: TEST1_QUESTIONS
     },
     test2: {
         id: 'test2',
-        name: 'Biology Chapter 2 - Respiration',
-        description: '24 MCQs on Cellular Respiration',
-        totalQuestions: 24,
-        timeLimit: 30,
+        name: 'The Internet',
+        description: '20 MCQs on The Internet',
+        totalQuestions: 20,
+        timeLimit: 25,
         passingScore: 50,
         questions: TEST2_QUESTIONS
     },
     test3: {
         id: 'test3',
-        name: 'Cell Biology',
-        description: '20 MCQs on Cell Biology',
+        name: 'Understanding Essential Computer Concepts',
+        description: '20 MCQs on Essential Computer Concepts',
         totalQuestions: 20,
-        timeLimit: 20,
+        timeLimit: 25,
         passingScore: 50,
         questions: TEST3_QUESTIONS
+    },
+    test4: {
+        id: 'test4',
+        name: 'Cyber Security',
+        description: '20 MCQs on Cyber Security',
+        totalQuestions: 20,
+        timeLimit: 25,
+        passingScore: 50,
+        questions: TEST4_QUESTIONS
     }
 };
 
@@ -923,10 +270,8 @@ export const getActiveTestId = () => {
         if (savedTestId && ALL_TESTS[savedTestId]) {
             return savedTestId;
         }
-    } catch (error) {
-        console.warn('Error reading from localStorage:', error);
-    }
-    return 'test3'; // Default to Cell Biology
+    } catch (error) {}
+    return 'test1';
 };
 
 export const setActiveTestId = (testId) => {
@@ -937,19 +282,25 @@ export const setActiveTestId = (testId) => {
         }
         return false;
     } catch (error) {
-        console.error('Error saving to localStorage:', error);
         return false;
     }
 };
 
-// ============================================================
-// CURRENT ACTIVE TEST
-// ============================================================
 export const ACTIVE_TEST_ID = getActiveTestId();
 export const EXAM_QUESTIONS = ALL_TESTS[ACTIVE_TEST_ID].questions;
 export const CURRENT_TEST = ALL_TESTS[ACTIVE_TEST_ID];
 
-console.log('🏫 Presentation Master Academy');
-console.log('📝 Active Test:', CURRENT_TEST.name);
-console.log('📊 Questions:', CURRENT_TEST.totalQuestions);
-console.log('⏱️ Time Limit:', CURRENT_TEST.timeLimit, 'minutes');
+// ============================================================
+// GET ALL TESTS LIST (For Admin Dashboard)
+// ============================================================
+export function getAllTests() {
+    return Object.keys(ALL_TESTS).map(key => ({
+        id: ALL_TESTS[key].id,
+        name: ALL_TESTS[key].name,
+        description: ALL_TESTS[key].description,
+        totalQuestions: ALL_TESTS[key].totalQuestions,
+        timeLimit: ALL_TESTS[key].timeLimit,
+        passingScore: ALL_TESTS[key].passingScore,
+        isCurrent: key === ACTIVE_TEST_ID
+    }));
+}
