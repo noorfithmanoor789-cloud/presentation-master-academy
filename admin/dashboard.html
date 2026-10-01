@@ -8,17 +8,6 @@
     <meta name="theme-color" content="#1a2a6c" />
     <link rel="stylesheet" href="../assets/styles.css" />
     <style>
-        .test-badge {
-            display: inline-block;
-            padding: 2px 10px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 600;
-        }
-        .test-badge.test1 { background: #d4edda; color: #155724; }
-        .test-badge.test2 { background: #cce5ff; color: #004085; }
-        .test-badge.unknown { background: #f8d7da; color: #721c24; }
-        
         .stats-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -46,7 +35,6 @@
         .stat-card.fail .number { color: #dc3545; }
         .stat-card.total .number { color: #1a2a6c; }
         
-        /* Logo Style */
         .logo-img {
             width: 60px;
             height: 60px;
@@ -66,7 +54,6 @@
     <div class="app-wrapper">
         <!-- Header with Logo -->
         <header class="app-header admin-header">
-            <!-- ✅ FIXED: Logo Path -->
             <img src="../assets/logo.jpeg" alt="Logo" class="logo-img" />
             <div>
                 <h1 style="margin:0; font-size:1.5rem;">Presentation Master Academy</h1>
@@ -123,8 +110,7 @@
                 <input type="text" id="searchInput" placeholder="🔍 Search student by name or username..." />
                 <select id="testFilterSelect">
                     <option value="all">📊 All Tests</option>
-                    <option value="test1">🧬 Biology Chapter 1 - Viruses</option>
-                    <option value="test2">🔬 Biology Chapter 2 - Respiration</option>
+                    <!-- Options loaded dynamically -->
                 </select>
                 <select id="sortSelect">
                     <option value="latest">Latest Submission</option>
@@ -163,13 +149,10 @@
                 </div>
             </div>
 
-            <!-- ====== LEGEND ====== -->
-            <div style="margin-top:20px; padding:15px; background:#f8f9fa; border-radius:10px; border:1px solid #dee2e6;">
+            <!-- ====== LEGEND (Dynamic) ====== -->
+            <div id="testLegend" style="margin-top:20px; padding:15px; background:#f8f9fa; border-radius:10px; border:1px solid #dee2e6;">
                 <p style="margin:0; font-size:0.9rem; color:#6c757d;">
                     <strong>Test Legend:</strong>
-                    <span class="test-badge test1">🧬 Biology Ch.1 - Viruses</span>
-                    <span class="test-badge test2">🔬 Biology Ch.2 - Respiration</span>
-                    <span class="test-badge unknown">❓ Unknown</span>
                 </p>
             </div>
         </main>
@@ -206,7 +189,7 @@
         let filteredResults = [];
 
         // ============================================================
-        // LOAD TEST MANAGEMENT
+        // LOAD TEST MANAGEMENT (Active Test Dropdown)
         // ============================================================
         function loadTestManagement() {
             const currentActive = getActiveTestId();
@@ -228,6 +211,49 @@
             testStatus.textContent = `✅ ${test.name} Active`;
             testStatus.style.background = '#d4edda';
             testStatus.style.color = '#155724';
+        }
+
+        // ============================================================
+        // LOAD TEST FILTER OPTIONS DYNAMICALLY
+        // ============================================================
+        function loadTestFilterOptions() {
+            testFilterSelect.innerHTML = '<option value="all">📊 All Tests</option>';
+            
+            Object.keys(ALL_TESTS).forEach(key => {
+                const test = ALL_TESTS[key];
+                const option = document.createElement('option');
+                option.value = key;
+                option.textContent = test.name;
+                testFilterSelect.appendChild(option);
+            });
+            
+            console.log('✅ Test filter loaded with', Object.keys(ALL_TESTS).length, 'tests');
+        }
+
+        // ============================================================
+        // LOAD TEST LEGEND DYNAMICALLY
+        // ============================================================
+        function loadTestLegend() {
+            const legendDiv = document.getElementById('testLegend');
+            const colors = ['#d4edda', '#cce5ff', '#fff3cd', '#e8d5f5', '#fce4ec', '#d1ecf1', '#f8d7da'];
+            const textColors = ['#155724', '#004085', '#856404', '#6c3483', '#880e4f', '#0c5460', '#721c24'];
+            
+            let legendHTML = '<strong>Test Legend:</strong> ';
+            
+            Object.keys(ALL_TESTS).forEach((key, index) => {
+                const test = ALL_TESTS[key];
+                const bgColor = colors[index % colors.length];
+                const textColor = textColors[index % textColors.length];
+                
+                legendHTML += `
+                    <span style="display:inline-block; padding:2px 10px; border-radius:12px; font-size:0.75rem; 
+                                 font-weight:600; background:${bgColor}; color:${textColor}; margin:2px;">
+                        ${test.name}
+                    </span>
+                `;
+            });
+            
+            legendDiv.innerHTML = `<p style="margin:0; font-size:0.9rem; color:#6c757d;">${legendHTML}</p>`;
         }
 
         // ============================================================
@@ -280,7 +306,6 @@
             const testFilter = testFilterSelect.value;
             const sortType = sortSelect.value;
 
-            // Filter
             let filtered = [...allResults];
 
             if (testFilter !== 'all') {
@@ -294,7 +319,6 @@
                 );
             }
 
-            // Sort
             switch(sortType) {
                 case 'highest':
                     filtered.sort((a, b) => (b.score || 0) - (a.score || 0));
@@ -322,10 +346,15 @@
                 return;
             }
 
+            const colors = ['#d4edda', '#cce5ff', '#fff3cd', '#e8d5f5', '#fce4ec', '#d1ecf1', '#f8d7da'];
+            const textColors = ['#155724', '#004085', '#856404', '#6c3483', '#880e4f', '#0c5460', '#721c24'];
+            const testKeys = Object.keys(ALL_TESTS);
+
             resultsBody.innerHTML = results.map((result, index) => {
                 const passClass = result.passFail === 'Pass' ? 'status-pass' : 'status-fail';
-                const testClass = result.testId === 'test1' ? 'test-badge test1' : 
-                                 result.testId === 'test2' ? 'test-badge test2' : 'test-badge unknown';
+                const testIndex = testKeys.indexOf(result.testId);
+                const bgColor = testIndex >= 0 ? colors[testIndex % colors.length] : '#f8d7da';
+                const textColor = testIndex >= 0 ? textColors[testIndex % textColors.length] : '#721c24';
                 const testLabel = result.testName || 'N/A';
                 
                 return `
@@ -333,21 +362,21 @@
                         <td>${index + 1}</td>
                         <td><strong>${result.studentName || 'N/A'}</strong></td>
                         <td>${result.username || 'N/A'}</td>
-                        <td><span class="${testClass}">${testLabel}</span></td>
-                        <td>${result.score || 0}/${result.totalQuestions || 0}</td>
-                        <td>${result.percentage || 0}%</td>
                         <td>
-                            <span class="status-badge ${passClass}">
-                                ${result.passFail || 'N/A'}
+                            <span style="display:inline-block; padding:2px 10px; border-radius:12px; 
+                                         font-size:0.75rem; font-weight:600; background:${bgColor}; color:${textColor};">
+                                ${testLabel}
                             </span>
                         </td>
+                        <td>${result.score || 0}/${result.totalQuestions || 0}</td>
+                        <td>${result.percentage || 0}%</td>
+                        <td><span class="status-badge ${passClass}">${result.passFail || 'N/A'}</span></td>
                         <td>${result.examDate || 'N/A'}</td>
                         <td>${result.timeTaken ? `${Math.floor(result.timeTaken / 60)}m ${result.timeTaken % 60}s` : 'N/A'}</td>
                     </tr>
                 `;
             }).join('');
 
-            // Update count
             resultCount.innerHTML = `📊 Total Results: <strong>${results.length}</strong> ${results.length !== allResults.length ? `(filtered from ${allResults.length})` : ''}`;
         }
 
@@ -399,6 +428,8 @@
         // INIT
         // ============================================================
         loadTestManagement();
+        loadTestFilterOptions();
+        loadTestLegend();
         loadResults();
 
         console.log('🏫 Presentation Master Academy - Admin Dashboard');
