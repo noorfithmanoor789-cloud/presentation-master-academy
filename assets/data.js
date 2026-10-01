@@ -1,4 +1,10 @@
 // ============================================================
+// FIREBASE IMPORTS
+// ============================================================
+import { db } from './firebase.js';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
+
+// ============================================================
 // COLLEGE INFORMATION - Presentation Master Academy
 // ============================================================
 export const COLLEGE_INFO = {
@@ -262,36 +268,85 @@ export const ALL_TESTS = {
 };
 
 // ============================================================
-// TEST SWITCHING FUNCTIONS
+// 🔥 FIREBASE-BASED TEST SWITCHING
 // ============================================================
-export const getActiveTestId = () => {
+
+// Global variable for active test
+let currentActiveTestId = 'test1';
+
+// ============================================================
+// GET ACTIVE TEST FROM FIREBASE
+// ============================================================
+export const getActiveTestFromFirebase = async () => {
     try {
-        const savedTestId = localStorage.getItem('activeTestId');
-        if (savedTestId && ALL_TESTS[savedTestId]) {
-            return savedTestId;
+        const configRef = doc(db, 'system-config', 'active-test');
+        const configSnap = await getDoc(configRef);
+        
+        if (configSnap.exists()) {
+            const data = configSnap.data();
+            const testId = data.activeTestId;
+            
+            if (ALL_TESTS[testId]) {
+                currentActiveTestId = testId;
+                console.log('✅ Active test from Firebase:', testId);
+                return testId;
+            }
+        } else {
+            // Create default config
+            await setDoc(configRef, {
+                activeTestId: 'test1',
+                updatedAt: new Date().toISOString()
+            });
         }
-    } catch (error) {}
-    return 'test1';
+    } catch (error) {
+        console.error('❌ Error:', error);
+    }
+    return currentActiveTestId;
 };
 
-export const setActiveTestId = (testId) => {
+// ============================================================
+// SET ACTIVE TEST IN FIREBASE
+// ============================================================
+export const setActiveTestInFirebase = async (testId) => {
     try {
-        if (ALL_TESTS[testId]) {
-            localStorage.setItem('activeTestId', testId);
-            return true;
+        if (!ALL_TESTS[testId]) {
+            console.error('❌ Invalid test:', testId);
+            return false;
         }
-        return false;
+        
+        const configRef = doc(db, 'system-config', 'active-test');
+        await setDoc(configRef, {
+            activeTestId: testId,
+            activeTestName: ALL_TESTS[testId].name,
+            updatedAt: new Date().toISOString(),
+            updatedBy: 'admin'
+        }, { merge: true });
+        
+        currentActiveTestId = testId;
+        console.log('✅ Test switched in Firebase:', testId);
+        return true;
     } catch (error) {
+        console.error('❌ Error:', error);
         return false;
     }
 };
 
-export const ACTIVE_TEST_ID = getActiveTestId();
-export const EXAM_QUESTIONS = ALL_TESTS[ACTIVE_TEST_ID].questions;
-export const CURRENT_TEST = ALL_TESTS[ACTIVE_TEST_ID];
+// ============================================================
+// GETTERS
+// ============================================================
+export const getCurrentTestId = () => currentActiveTestId;
+export const getCurrentTestQuestions = () => ALL_TESTS[currentActiveTestId].questions;
+export const getCurrentTestConfig = () => ALL_TESTS[currentActiveTestId];
 
 // ============================================================
-// GET ALL TESTS LIST (For Admin Dashboard)
+// DEFAULT EXPORTS
+// ============================================================
+export const ACTIVE_TEST_ID = 'test1';
+export const EXAM_QUESTIONS = ALL_TESTS['test1'].questions;
+export const CURRENT_TEST = ALL_TESTS['test1'];
+
+// ============================================================
+// GET ALL TESTS LIST
 // ============================================================
 export function getAllTests() {
     return Object.keys(ALL_TESTS).map(key => ({
@@ -301,6 +356,6 @@ export function getAllTests() {
         totalQuestions: ALL_TESTS[key].totalQuestions,
         timeLimit: ALL_TESTS[key].timeLimit,
         passingScore: ALL_TESTS[key].passingScore,
-        isCurrent: key === ACTIVE_TEST_ID
+        isCurrent: key === currentActiveTestId
     }));
 }
