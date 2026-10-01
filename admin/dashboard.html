@@ -4,8 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Admin Dashboard - Presentation Master Academy</title>
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#1a2a6c" />
     <link rel="stylesheet" href="../assets/styles.css" />
     <style>
         .stats-grid {
@@ -21,38 +19,16 @@
             border: 1px solid #e8edf5;
             text-align: center;
         }
-        .stat-card .number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #1a2a6c;
-        }
-        .stat-card .label {
-            font-size: 0.85rem;
-            color: #6c757d;
-            margin-top: 5px;
-        }
+        .stat-card .number { font-size: 2rem; font-weight: bold; color: #1a2a6c; }
+        .stat-card .label { font-size: 0.85rem; color: #6c757d; margin-top: 5px; }
         .stat-card.pass .number { color: #28a745; }
         .stat-card.fail .number { color: #dc3545; }
-        .stat-card.total .number { color: #1a2a6c; }
-        
-        .logo-img {
-            width: 60px;
-            height: 60px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 3px solid #4a9eff;
-            background: white;
-        }
-        .admin-header {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
+        .logo-img { width: 60px; height: 60px; object-fit: cover; border-radius: 50%; border: 3px solid #4a9eff; background: white; }
+        .admin-header { display: flex; align-items: center; gap: 20px; }
     </style>
 </head>
 <body>
     <div class="app-wrapper">
-        <!-- Header with Logo -->
         <header class="app-header admin-header">
             <img src="../assets/logo.jpeg" alt="Logo" class="logo-img" />
             <div>
@@ -63,30 +39,27 @@
         </header>
 
         <main class="admin-container">
-            <!-- ====== TEST MANAGEMENT ====== -->
             <div class="card" style="margin-bottom:20px;">
                 <h3>📋 Test Management</h3>
                 <div style="display:flex; gap:15px; flex-wrap:wrap; align-items:center; padding:15px 0;">
                     <div style="flex:1; min-width:200px;">
                         <label style="font-weight:600; display:block; margin-bottom:5px;">Select Active Test:</label>
                         <select id="activeTestSelect" style="width:100%; padding:10px; border:2px solid #dce3ef; border-radius:10px; font-size:1rem;">
-                            <!-- Options loaded dynamically -->
                         </select>
                     </div>
                     <button id="updateTestBtn" class="btn btn-primary">🔄 Switch Test</button>
                     <span id="testStatus" style="padding:8px 15px; border-radius:20px; background:#d4edda; color:#155724; font-weight:600;">
-                        ✅ Active
+                        ✅ Loading...
                     </span>
                 </div>
                 <div style="background:#f8f9fa; padding:15px; border-radius:10px; margin-top:10px;">
                     <p style="margin:0; font-size:0.9rem; color:#6c757d;">
-                        📌 <strong>Note:</strong> Switching test will change what students see. All results are preserved.
+                        📌 <strong>Note:</strong> Switching test will change what students see on ALL devices. All results are preserved.
                     </p>
                 </div>
             </div>
 
-            <!-- ====== STATISTICS ====== -->
-            <div class="stats-grid" id="statsGrid">
+            <div class="stats-grid">
                 <div class="stat-card total">
                     <div class="number" id="totalStudents">0</div>
                     <div class="label">Total Students</div>
@@ -105,12 +78,10 @@
                 </div>
             </div>
 
-            <!-- ====== SEARCH & FILTER ====== -->
             <div class="admin-controls">
-                <input type="text" id="searchInput" placeholder="🔍 Search student by name or username..." />
+                <input type="text" id="searchInput" placeholder="🔍 Search student..." />
                 <select id="testFilterSelect">
                     <option value="all">📊 All Tests</option>
-                    <!-- Options loaded dynamically -->
                 </select>
                 <select id="sortSelect">
                     <option value="latest">Latest Submission</option>
@@ -120,14 +91,12 @@
                 <button id="refreshBtn" class="btn btn-primary">🔄 Refresh</button>
             </div>
 
-            <!-- ====== RESULT COUNT ====== -->
             <div id="resultCount" style="margin:10px 0; padding:10px; border-radius:8px; font-weight:bold; background:#d4edda; color:#155724;">
                 Loading results...
             </div>
 
-            <!-- ====== RESULTS TABLE ====== -->
             <div class="card table-card">
-                <div id="resultsTableContainer" style="overflow-x:auto;">
+                <div style="overflow-x:auto;">
                     <table id="resultsTable">
                         <thead>
                             <tr>
@@ -149,10 +118,9 @@
                 </div>
             </div>
 
-            <!-- ====== LEGEND (Dynamic) ====== -->
             <div id="testLegend" style="margin-top:20px; padding:15px; background:#f8f9fa; border-radius:10px; border:1px solid #dee2e6;">
                 <p style="margin:0; font-size:0.9rem; color:#6c757d;">
-                    <strong>Test Legend:</strong>
+                    <strong>Test Legend:</strong> Loading...
                 </p>
             </div>
         </main>
@@ -169,11 +137,13 @@
     <script type="module">
         import { db } from '../assets/firebase.js';
         import { collection, getDocs, query, orderBy } from 'firebase/firestore';
-        import { ALL_TESTS, getActiveTestId, setActiveTestId, EXAM_STUDENTS } from '../assets/data.js';
+        import { 
+            ALL_TESTS, 
+            EXAM_STUDENTS,
+            getActiveTestFromFirebase,
+            setActiveTestInFirebase
+        } from '../assets/data.js';
 
-        // ============================================================
-        // DOM REFERENCES
-        // ============================================================
         const resultsBody = document.getElementById('resultsBody');
         const searchInput = document.getElementById('searchInput');
         const testFilterSelect = document.getElementById('testFilterSelect');
@@ -186,13 +156,27 @@
         const resultCount = document.getElementById('resultCount');
 
         let allResults = [];
-        let filteredResults = [];
 
         // ============================================================
-        // LOAD TEST MANAGEMENT (Active Test Dropdown)
+        // INIT
         // ============================================================
-        function loadTestManagement() {
-            const currentActive = getActiveTestId();
+        async function init() {
+            console.log('⏳ Loading admin dashboard...');
+            
+            const activeTestId = await getActiveTestFromFirebase();
+            console.log('✅ Active test:', activeTestId);
+            
+            loadTestManagement(activeTestId);
+            loadTestFilterOptions();
+            loadTestLegend();
+            
+            await loadResults();
+        }
+
+        // ============================================================
+        // LOAD TEST MANAGEMENT
+        // ============================================================
+        function loadTestManagement(currentActive) {
             activeTestSelect.innerHTML = '';
             
             Object.keys(ALL_TESTS).forEach(key => {
@@ -214,7 +198,7 @@
         }
 
         // ============================================================
-        // LOAD TEST FILTER OPTIONS DYNAMICALLY
+        // LOAD TEST FILTER OPTIONS
         // ============================================================
         function loadTestFilterOptions() {
             testFilterSelect.innerHTML = '<option value="all">📊 All Tests</option>';
@@ -226,12 +210,10 @@
                 option.textContent = test.name;
                 testFilterSelect.appendChild(option);
             });
-            
-            console.log('✅ Test filter loaded with', Object.keys(ALL_TESTS).length, 'tests');
         }
 
         // ============================================================
-        // LOAD TEST LEGEND DYNAMICALLY
+        // LOAD TEST LEGEND
         // ============================================================
         function loadTestLegend() {
             const legendDiv = document.getElementById('testLegend');
@@ -259,18 +241,27 @@
         // ============================================================
         // SWITCH TEST
         // ============================================================
-        updateTestBtn.addEventListener('click', () => {
+        updateTestBtn.addEventListener('click', async () => {
             const testId = activeTestSelect.value;
-            const testName = activeTestSelect.options[activeTestSelect.selectedIndex].text;
+            const testName = ALL_TESTS[testId].name;
             
-            if (confirm(`Are you sure you want to switch to "${testName}"?`)) {
-                const success = setActiveTestId(testId);
-                if (success) {
-                    alert(`✅ Test switched to "${testName}" successfully!`);
-                    window.location.reload();
-                } else {
-                    alert('❌ Error switching test. Please try again.');
-                }
+            if (!confirm(`⚠️ Are you sure?\n\nSwitching to "${testName}" will change the test for ALL students.\n\nThis action is instant.`)) {
+                return;
+            }
+            
+            const originalText = updateTestBtn.textContent;
+            updateTestBtn.textContent = '⏳ Switching...';
+            updateTestBtn.disabled = true;
+            
+            const success = await setActiveTestInFirebase(testId);
+            
+            if (success) {
+                alert(`✅ Test Switched Successfully!\n\nActive Test: "${testName}"`);
+                window.location.reload();
+            } else {
+                alert('❌ Error switching test.');
+                updateTestBtn.textContent = originalText;
+                updateTestBtn.disabled = false;
             }
         });
 
@@ -293,8 +284,8 @@
                 applyFilters();
 
             } catch (error) {
-                console.error('Error loading results:', error);
-                resultsBody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding:30px; color:#dc3545;">❌ Error loading results. Please refresh.</td></tr>';
+                console.error('Error:', error);
+                resultsBody.innerHTML = '<tr><td colspan="9" style="text-align:center; padding:30px; color:#dc3545;">❌ Error loading results.</td></tr>';
             }
         }
 
@@ -332,9 +323,8 @@
                     break;
             }
 
-            filteredResults = filtered;
-            displayResults(filteredResults);
-            updateStats(filteredResults);
+            displayResults(filtered);
+            updateStats(filtered);
         }
 
         // ============================================================
@@ -355,7 +345,6 @@
                 const testIndex = testKeys.indexOf(result.testId);
                 const bgColor = testIndex >= 0 ? colors[testIndex % colors.length] : '#f8d7da';
                 const textColor = testIndex >= 0 ? textColors[testIndex % textColors.length] : '#721c24';
-                const testLabel = result.testName || 'N/A';
                 
                 return `
                     <tr>
@@ -365,7 +354,7 @@
                         <td>
                             <span style="display:inline-block; padding:2px 10px; border-radius:12px; 
                                          font-size:0.75rem; font-weight:600; background:${bgColor}; color:${textColor};">
-                                ${testLabel}
+                                ${result.testName || 'N/A'}
                             </span>
                         </td>
                         <td>${result.score || 0}/${result.totalQuestions || 0}</td>
@@ -377,22 +366,17 @@
                 `;
             }).join('');
 
-            resultCount.innerHTML = `📊 Total Results: <strong>${results.length}</strong> ${results.length !== allResults.length ? `(filtered from ${allResults.length})` : ''}`;
+            resultCount.innerHTML = `📊 Total Results: <strong>${results.length}</strong>`;
         }
 
         // ============================================================
         // UPDATE STATISTICS
         // ============================================================
         function updateStats(results) {
-            const totalStudents = EXAM_STUDENTS.length;
-            const totalResults = results.length;
-            const passCount = results.filter(r => r.passFail === 'Pass').length;
-            const failCount = results.filter(r => r.passFail === 'Fail').length;
-
-            document.getElementById('totalStudents').textContent = totalStudents;
-            document.getElementById('totalResults').textContent = totalResults;
-            document.getElementById('passCount').textContent = passCount;
-            document.getElementById('failCount').textContent = failCount;
+            document.getElementById('totalStudents').textContent = EXAM_STUDENTS.length;
+            document.getElementById('totalResults').textContent = results.length;
+            document.getElementById('passCount').textContent = results.filter(r => r.passFail === 'Pass').length;
+            document.getElementById('failCount').textContent = results.filter(r => r.passFail === 'Fail').length;
         }
 
         // ============================================================
@@ -411,7 +395,7 @@
         });
 
         // ============================================================
-        // CHECK ADMIN LOGIN
+        // ADMIN LOGIN CHECK
         // ============================================================
         const adminLoggedIn = localStorage.getItem('adminLoggedIn');
         if (!adminLoggedIn) {
@@ -425,16 +409,9 @@
         }
 
         // ============================================================
-        // INIT
+        // START
         // ============================================================
-        loadTestManagement();
-        loadTestFilterOptions();
-        loadTestLegend();
-        loadResults();
-
-        console.log('🏫 Presentation Master Academy - Admin Dashboard');
-        console.log('📊 Total Students:', EXAM_STUDENTS.length);
-        console.log('📝 Tests Available:', Object.keys(ALL_TESTS).length);
+        init();
 
     </script>
 </body>
